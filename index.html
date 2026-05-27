@@ -22,10 +22,9 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#ffd1dc,#ff9eb5,#ffc2d1);
+    background:linear-gradient(135deg,#ffd1dc,#ff9eb5,#ffc2d1,#ffe3ea);
     background-size:400% 400%;
-    animation:bgMove 10s ease infinite;
-    position:relative;
+    animation:bgMove 12s ease infinite;
 }
 
 @keyframes bgMove{
@@ -37,30 +36,24 @@ body{
 .container{
     width:90%;
     max-width:380px;
-    background:rgba(255,255,255,0.95);
-    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(12px);
     border-radius:30px;
     padding:35px 25px;
     text-align:center;
-    box-shadow:0 10px 35px rgba(255,77,109,0.25);
-    z-index:10;
+    box-shadow:0 15px 40px rgba(255,77,109,0.25);
     animation:fadeIn 1s ease;
+    border:1px solid rgba(255,255,255,0.4);
 }
 
 @keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
 h1{
     font-family:'Caveat',cursive;
-    font-size:46px;
+    font-size:48px;
     color:#ff4d6d;
     margin-bottom:15px;
 }
@@ -69,7 +62,7 @@ p{
     color:#555;
     font-size:16px;
     line-height:1.8;
-    min-height:130px;
+    min-height:140px;
 }
 
 button{
@@ -85,15 +78,15 @@ button{
 .btn-main{
     background:#ff4d6d;
     color:white;
-    box-shadow:0 5px 15px rgba(255,77,109,0.35);
+    box-shadow:0 6px 18px rgba(255,77,109,0.35);
 }
 
 .btn-main:hover{
-    transform:scale(1.05);
+    transform:scale(1.07);
 }
 
 .btn-no{
-    background:#999;
+    background:#888;
     color:white;
     position:absolute;
     display:none;
@@ -114,7 +107,8 @@ button{
 
 @keyframes fall{
     to{
-        transform:translateY(110vh);
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
     }
 }
 </style>
@@ -122,8 +116,8 @@ button{
 
 <body>
 
-<!-- Musik romantis -->
-<audio autoplay loop>
+<!-- Musik -->
+<audio id="bgMusic" loop>
     <source src="https://files.catbox.moe/8f2h7g.mp3" type="audio/mp3">
 </audio>
 
@@ -131,16 +125,12 @@ button{
 
     <h1 id="title">Hai Fira ❤️</h1>
 
-    <p id="message">
-        Aku cuma mau bilang...
-        kadang seseorang datang bukan buat sekadar lewat,
-        tapi buat tinggal di hati 🤍
-    </p>
+    <p id="message"></p>
 
     <div class="btn-group" id="btnGroup">
 
-        <button class="btn-main" id="yesBtn" onclick="nextStep()">
-            Klik di sini ✨
+        <button class="btn-main" id="yesBtn" onclick="playStep()">
+            Sentuh Aku ✨
         </button>
 
         <button class="btn-no" id="noBtn"
@@ -156,100 +146,102 @@ button{
 
 let step = 1;
 
-function nextStep(){
+const messages = [
+`Aku gak tahu gimana cara paling tepat buat nyampein ini...
+tapi kamu bikin hari-hariku jadi lebih hangat 🤍`,
+
+`Sejak kamu hadir, hal-hal sederhana jadi terasa spesial.
+Bahkan chat kamu aja bisa bikin aku senyum sendiri.`,
+
+`Aku gak tahu kapan mulai, tapi aku nyaman sama kamu...
+dan itu tumbuh tanpa aku sadari.`,
+
+`Kalau aku jujur... aku pengen kamu jadi bagian spesial di hidup aku.
+Kamu mau gak?`,
+
+`Makasih ya... sudah mau jadi bagian dari cerita ini 🥺✨
+Kita mulai sesuatu yang baru ya, pelan-pelan.`
+];
+
+const titles = [
+"Hai Fira ❤️",
+"Kamu 🌸",
+"Perasaan Ini 🤍",
+"Pertanyaan 💖",
+"Terima Kasih ❤️"
+];
+
+const btnText = [
+"Sentuh Aku ✨",
+"Lanjut ❤️",
+"Terus...? ✨",
+"Iya ❤️",
+""
+];
+
+function typeText(text){
+    const msg = document.getElementById("message");
+    msg.innerHTML = "";
+    let i = 0;
+
+    let typing = setInterval(()=>{
+        msg.innerHTML += text.charAt(i);
+        i++;
+        if(i >= text.length){
+            clearInterval(typing);
+        }
+    }, 30);
+}
+
+function playStep(){
+
+    document.getElementById("bgMusic").play();
 
     const title = document.getElementById("title");
-    const message = document.getElementById("message");
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
 
-    if(step === 1){
+    title.innerHTML = titles[step-1];
+    typeText(messages[step-1]);
 
-        title.innerHTML = "Tentang Kamu 🌸";
+    yesBtn.innerHTML = btnText[step];
 
-        message.innerHTML =
-        "Entah sejak kapan, aku jadi nyaman banget sama kamu. Chat sederhana dari kamu aja bisa bikin mood aku membaik seharian.";
-
-        yesBtn.innerHTML = "Lanjut ❤️";
-
-        step++;
-
-    }
-
-    else if(step === 2){
-
-        title.innerHTML = "Aku Suka Kamu 🤍";
-
-        message.innerHTML =
-        "Aku suka cara kamu ngobrol, cara kamu ketawa, dan cara kamu hadir tanpa sadar bikin hidup aku lebih indah.";
-
-        yesBtn.innerHTML = "Terus...? ✨";
-
-        step++;
-
-    }
-
-    else if(step === 3){
-
-        title.innerHTML = "Mau Gak? 💖";
-
-        message.innerHTML =
-        "Jadi... kamu mau gak jadi seseorang yang spesial buat aku? Bukan cuma hari ini, tapi semoga untuk waktu yang lama ✨";
-
-        yesBtn.innerHTML = "Mau ❤️";
-
+    if(step === 3){
         noBtn.style.display = "block";
-
-        step++;
-
     }
 
-    else if(step === 4){
-
-        title.innerHTML = "YEAAYYY ❤️";
-
-        message.innerHTML =
-        "Sekarang kamu resmi jadi orang favorit aku 🥺❤️ Makasih udah nerima perasaan ini. Semoga kita bisa bikin banyak cerita manis bareng ya ✨";
-
+    if(step === 4){
         document.getElementById("btnGroup").style.display = "none";
-
-        setInterval(createHeart,150);
+        setInterval(createHeart,120);
     }
+
+    step++;
 }
 
 function moveBtn(){
-
     const noBtn = document.getElementById("noBtn");
 
     const x = Math.random() * (window.innerWidth - 100);
-
     const y = Math.random() * (window.innerHeight - 100);
 
     noBtn.style.left = x + "px";
-
     noBtn.style.top = y + "px";
 }
 
 function createHeart(){
-
     const heart = document.createElement("div");
-
     heart.classList.add("heart");
-
     heart.innerHTML = "❤️";
 
     heart.style.left = Math.random() * 100 + "vw";
-
-    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-
+    heart.style.fontSize = (Math.random() * 18 + 14) + "px";
     heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
 
     document.body.appendChild(heart);
 
-    setTimeout(()=>{
-        heart.remove();
-    },5000);
+    setTimeout(()=> heart.remove(),5000);
 }
+
 </script>
 
 </body>
