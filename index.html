@@ -3,167 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>For Fira ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-    font-family:'Poppins',sans-serif;
-    height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#ffd1dc,#ff9eb5,#ffc2d1,#ffe3ea);
-    background-size:400% 400%;
-    animation:bgMove 12s ease infinite;
+  font-family:'Poppins',sans-serif;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffd1dc,#ff9eb5,#ffc2d1,#ffe3ea);
+  background-size:400% 400%;
+  animation:bgMove 10s ease infinite;
+  position:relative;
 }
 
+/* BACKGROUND ANIMATION */
 @keyframes bgMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
+/* GLOW LAYER */
+body::before{
+  content:"";
+  position:absolute;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle,rgba(255,255,255,0.2),transparent);
+  animation:moveGlow 12s linear infinite;
+}
+
+@keyframes moveGlow{
+  0%{transform:translate(-25%,-25%);}
+  50%{transform:translate(0%,0%);}
+  100%{transform:translate(-25%,-25%);}
+}
+
+/* PARTICLE */
+.particle{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:rgba(255,255,255,0.7);
+  border-radius:50%;
+  animation:float 8s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);opacity:1;}
+  to{transform:translateY(-10vh);opacity:0;}
+}
+
+/* CARD */
 .container{
-    width:90%;
-    max-width:380px;
-    background:rgba(255,255,255,0.92);
-    backdrop-filter:blur(12px);
-    border-radius:30px;
-    padding:35px 25px;
-    text-align:center;
-    box-shadow:0 15px 40px rgba(255,77,109,0.25);
-    animation:fadeIn 1s ease;
-    border:1px solid rgba(255,255,255,0.4);
+  width:90%;
+  max-width:380px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(12px);
+  border-radius:30px;
+  padding:35px 25px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(255,77,109,0.25);
+  animation:fadeIn 1s ease;
+  z-index:10;
 }
 
 @keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
 h1{
-    font-family:'Caveat',cursive;
-    font-size:48px;
-    color:#ff4d6d;
-    margin-bottom:15px;
+  font-family:'Caveat',cursive;
+  font-size:48px;
+  color:#ff4d6d;
 }
 
+/* TEXT */
 p{
-    color:#555;
-    font-size:16px;
-    line-height:1.8;
-    min-height:140px;
+  color:#555;
+  font-size:16px;
+  line-height:1.8;
+  min-height:140px;
+  animation:fadeText 0.4s ease;
+}
+
+@keyframes fadeText{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* CURSOR */
+#message::after{
+  content:"|";
+  animation:blink 0.7s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+/* BUTTON */
+.btn-group{
+  margin-top:25px;
+  position:relative;
+  height:70px;
 }
 
 button{
-    border:none;
-    border-radius:15px;
-    padding:13px 28px;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+  border:none;
+  border-radius:15px;
+  padding:13px 28px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
 }
 
+/* PULSE BUTTON */
 .btn-main{
-    background:#ff4d6d;
-    color:white;
-    box-shadow:0 6px 18px rgba(255,77,109,0.35);
+  background:#ff4d6d;
+  color:white;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(255,77,109,0.5);}
+  70%{box-shadow:0 0 0 15px rgba(255,77,109,0);}
+  100%{box-shadow:0 0 0 0 rgba(255,77,109,0);}
 }
 
 .btn-main:hover{
-    transform:scale(1.07);
+  transform:scale(1.08);
 }
 
 .btn-no{
-    background:#888;
-    color:white;
-    position:absolute;
-    display:none;
+  background:#888;
+  color:white;
+  position:absolute;
+  display:none;
+  transition:0.2s;
 }
 
-.btn-group{
-    margin-top:25px;
-    position:relative;
-    height:60px;
-}
-
+/* HEART */
 .heart{
-    position:absolute;
-    color:#ff4d6d;
-    top:-20px;
-    animation:fall linear forwards;
+  position:absolute;
+  color:#ff4d6d;
+  animation:floatHeart 4s ease-in forwards;
 }
 
-@keyframes fall{
-    to{
-        transform:translateY(110vh) rotate(360deg);
-        opacity:0;
-    }
+@keyframes floatHeart{
+  0%{transform:translateY(0) scale(1);opacity:1;}
+  100%{transform:translateY(-120vh) scale(1.5);opacity:0;}
 }
+
+/* SHAKE */
+.shake{
+  animation:shake 0.3s;
+}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-5px);}
+  50%{transform:translateX(5px);}
+  75%{transform:translateX(-3px);}
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- Musik -->
-<audio id="bgMusic" loop>
-    <source src="https://files.catbox.moe/8f2h7g.mp3" type="audio/mp3">
-</audio>
-
 <div class="container">
+  <h1 id="title">Hai Fira ❤️</h1>
+  <p id="message"></p>
 
-    <h1 id="title">Hai Fira ❤️</h1>
+  <div class="btn-group">
+    <button class="btn-main" id="yesBtn" onclick="playStep()">Sentuh Aku ✨</button>
 
-    <p id="message"></p>
-
-    <div class="btn-group" id="btnGroup">
-
-        <button class="btn-main" id="yesBtn" onclick="playStep()">
-            Sentuh Aku ✨
-        </button>
-
-        <button class="btn-no" id="noBtn"
-        onmouseover="moveBtn()"
-        ontouchstart="moveBtn()">
-            Enggak 😜
-        </button>
-
-    </div>
+    <button class="btn-no" id="noBtn"
+      onmouseover="moveBtn()"
+      ontouchstart="moveBtn()">
+      Enggak 😜
+    </button>
+  </div>
 </div>
 
 <script>
 
-let step = 1;
+/* PARTICLES AUTO CREATE */
+for(let i=0;i<15;i++){
+  let p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=(Math.random()*5+5)+"s";
+  document.body.appendChild(p);
+}
 
-const messages = [
+let step=1;
+
+const messages=[
 `Aku gak tahu gimana cara paling tepat buat nyampein ini...
 tapi kamu bikin hari-hariku jadi lebih hangat 🤍`,
 
-`Sejak kamu hadir, hal-hal sederhana jadi terasa spesial.
-Bahkan chat kamu aja bisa bikin aku senyum sendiri.`,
+`Sejak kamu hadir, semuanya terasa beda...
+lebih indah, lebih ringan.`,
 
-`Aku gak tahu kapan mulai, tapi aku nyaman sama kamu...
+`Aku nyaman sama kamu...
 dan itu tumbuh tanpa aku sadari.`,
 
-`Kalau aku jujur... aku pengen kamu jadi bagian spesial di hidup aku.
-Kamu mau gak?`,
+`Aku jujur ya...
+aku pengen kamu jadi bagian spesial di hidup aku.`,
 
-`Makasih ya... sudah mau jadi bagian dari cerita ini 🥺✨
-Kita mulai sesuatu yang baru ya, pelan-pelan.`
+`Makasih ya 🤍
+udah bikin cerita ini jadi indah.`
 ];
 
-const titles = [
+const titles=[
 "Hai Fira ❤️",
 "Kamu 🌸",
 "Perasaan Ini 🤍",
@@ -171,7 +238,7 @@ const titles = [
 "Terima Kasih ❤️"
 ];
 
-const btnText = [
+const btnText=[
 "Sentuh Aku ✨",
 "Lanjut ❤️",
 "Terus...? ✨",
@@ -180,66 +247,58 @@ const btnText = [
 ];
 
 function typeText(text){
-    const msg = document.getElementById("message");
-    msg.innerHTML = "";
-    let i = 0;
+  const msg=document.getElementById("message");
+  msg.innerHTML="";
+  let i=0;
 
-    let typing = setInterval(()=>{
-        msg.innerHTML += text.charAt(i);
-        i++;
-        if(i >= text.length){
-            clearInterval(typing);
-        }
-    }, 30);
+  let typing=setInterval(()=>{
+    msg.innerHTML+=text.charAt(i);
+    i++;
+    if(i>=text.length) clearInterval(typing);
+  },25);
 }
 
 function playStep(){
 
-    document.getElementById("bgMusic").play();
+  const title=document.getElementById("title");
+  const yesBtn=document.getElementById("yesBtn");
+  const noBtn=document.getElementById("noBtn");
 
-    const title = document.getElementById("title");
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
+  title.innerHTML=titles[step-1];
+  typeText(messages[step-1]);
 
-    title.innerHTML = titles[step-1];
-    typeText(messages[step-1]);
+  yesBtn.innerHTML=btnText[step];
 
-    yesBtn.innerHTML = btnText[step];
+  if(step===2){
+    noBtn.style.display="block";
+  }
 
-    if(step === 3){
-        noBtn.style.display = "block";
-    }
+  if(step===4){
+    document.querySelector(".btn-group").style.display="none";
+    setInterval(createHeart,120);
+  }
 
-    if(step === 4){
-        document.getElementById("btnGroup").style.display = "none";
-        setInterval(createHeart,120);
-    }
-
-    step++;
+  step++;
 }
 
 function moveBtn(){
-    const noBtn = document.getElementById("noBtn");
-
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 100);
-
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+  const noBtn=document.getElementById("noBtn");
+  noBtn.style.left=Math.random()*250+"px";
+  noBtn.style.top=Math.random()*60+"px";
 }
 
 function createHeart(){
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 18 + 14) + "px";
-    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(Math.random()*18+14)+"px";
+  heart.style.animationDuration=(Math.random()*2+3)+"s";
 
-    document.body.appendChild(heart);
+  document.body.appendChild(heart);
 
-    setTimeout(()=> heart.remove(),5000);
+  setTimeout(()=>heart.remove(),5000);
 }
 
 </script>
