@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special message for my Princess... 👑❤️</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffe6e6;
+            text-align: center;
+            padding: 30px 15px;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 90%;
+            margin: 40px auto;
+        }
+        h1 { color: #ff4d6d; font-size: 22px; margin-top: 10px; }
+        p { color: #4a4a4a; font-size: 15px; line-height: 1.6; }
+        .gif { width: 140px; margin-bottom: 10px; }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            position: relative;
+            height: 60px;
+        }
+        button, .btn-wa {
+            padding: 12px 20px;
+            font-size: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.1s;
+            touch-action: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+        #btnMau { background-color: #ff4d6d; color: white; z-index: 10; }
+        #btnGak { background-color: #b0b0b0; color: white; position: absolute; }
+        .btn-wa {
+            background-color: #25d366;
+            color: white;
+            margin-top: 20px;
+            display: none; /* Sembunyi dulu sebelum diklik */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img class="gif" src="https://giphy.com" alt="Cute Princess Bear">
+    
+    <h1 id="judul">Hai Princess-ku... 👑</h1>
+    <p id="pesan">Selama ini aku bahagia banget bisa dekat sama kamu. Tapi jujur, aku gak mau kalau kita cuma sebatas teman terus. Aku mau jadi orang yang selalu ada buat jagain kamu. My Princess, mau gak kalau kita melangkah lebih jauh dari sekadar teman dan jadi pacar aku? 🥰</p>
+
+    <div class="btn-group" id="groupTombol">
+        <button id="btnMau" onclick="terima()">Mau banget! ❤️</button>
+        <button id="btnGak" ontouchstart="kabur()" onmouseover="kabur()" onclick="kabur()">Tetep temenan aja</button>
+    </div>
+
+    <!-- Tombol WhatsApp Otomatis -->
+    <a href="#" id="tombolWA" class="btn-wa" target="_blank">Hubungi Pangeranmu Kirim WA 💬</a>
+</div>
+
+<script>
+    // PENTING: Ganti nomor di bawah ini dengan nomor WhatsApp kamu!
+    // Gunakan kode negara (62) di depan, jangan pakai angka 0. Contoh: 628123456789
+    const nomorWhatsApp = "6289531922924"; 
+    
+    // Teks pesan otomatis yang akan masuk ke WhatsApp kamu
+    const teksPesan = "Iya pangeran, aku mau kok jadi pacar kamu! Gak mau temenan doang lagi 🥰👑❤️";
+
+    function kabur() {
+        const btnGak = document.getElementById('btnGak');
+        const x = Math.random() * (window.innerWidth - btnGak.offsetWidth - 40);
+        const y = Math.random() * (window.innerHeight - btnGak.offsetHeight - 100);
+        
+        btnGak.style.position = 'fixed';
+        btnGak.style.left = Math.max(10, x) + 'px';
+        btnGak.style.top = Math.max(50, y) + 'px';
+    }
+
+    function terima() {
+        document.getElementById('judul').innerHTML = "Yeeeeyyy! Resmi ya! 🎉👑❤️";
+        document.getElementById('pesan').innerHTML = "Makasih ya Princess udah ngasih kesempatan buat kita lebih dari sekadar teman! Sekarang, klik tombol di bawah ini buat ngabarin aku ya!";
+        
+        // Sembunyikan tombol pilihan lama
+        document.getElementById('groupTombol').style.display = 'none';
+        
+        // Buat link WhatsApp aktif dan tampilkan tombolnya
+        const linkWA = "https://whatsapp.com" + nomorWhatsApp + "&text=" + encodeURIComponent(teksPesan);
+        const tombolWA = document.getElementById('tombolWA');
+        tombolWA.href = linkWA;
+        tombolWA.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
