@@ -1,184 +1,255 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special Gift for Fira... 👑❤️</title>
-    <!-- Menggunakan font estetik Google Fonts -->
-    <link href="https://googleapis.com" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #ffe6e6;
-            text-align: center;
-            padding: 20px 15px;
-            margin: 0;
-            overflow: hidden;
-            position: relative;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            background: white;
-            padding: 30px 20px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
-            max-width: 360px;
-            width: 90%;
-            z-index: 10;
-            transition: all 0.5s ease;
-        }
-        h1 { 
-            font-family: 'Caveat', cursive; 
-            color: #ff4d6d; 
-            font-size: 35px; 
-            margin: 10px 0; 
-        }
-        p { 
-            color: #4a4a4a; 
-            font-size: 15px; 
-            line-height: 1.6; 
-            min-height: 60px; 
-        }
-        .gif { 
-            width: 130px; 
-            height: 130px;
-            object-fit: contain;
-            margin-bottom: 10px; 
-        }
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-            position: relative;
-            height: 55px;
-        }
-        button {
-            padding: 12px 25px;
-            font-size: 15px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.1s;
-            touch-action: none;
-        }
-        .btn-primary { 
-            background-color: #ff4d6d; 
-            color: white; 
-            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
-            z-index: 12; 
-        }
-        .btn-secondary { 
-            background-color: #b0b0b0; 
-            color: white; 
-            position: absolute; 
-            right: 25px;
-        }
-        .heart {
-            position: absolute;
-            color: #ff4d6d;
-            font-size: 20px;
-            animation: fall linear forwards;
-            z-index: 1;
-        }
-        @keyframes fall {
-            to { transform: translateY(105vh); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Fira ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffd1dc,#ff9eb5,#ffc2d1);
+    background-size:400% 400%;
+    animation:bgMove 10s ease infinite;
+    position:relative;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.container{
+    width:90%;
+    max-width:380px;
+    background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(10px);
+    border-radius:30px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(255,77,109,0.25);
+    z-index:10;
+    animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+h1{
+    font-family:'Caveat',cursive;
+    font-size:46px;
+    color:#ff4d6d;
+    margin-bottom:15px;
+}
+
+p{
+    color:#555;
+    font-size:16px;
+    line-height:1.8;
+    min-height:130px;
+}
+
+button{
+    border:none;
+    border-radius:15px;
+    padding:13px 28px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn-main{
+    background:#ff4d6d;
+    color:white;
+    box-shadow:0 5px 15px rgba(255,77,109,0.35);
+}
+
+.btn-main:hover{
+    transform:scale(1.05);
+}
+
+.btn-no{
+    background:#999;
+    color:white;
+    position:absolute;
+    display:none;
+}
+
+.btn-group{
+    margin-top:25px;
+    position:relative;
+    height:60px;
+}
+
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    top:-20px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+    }
+}
+</style>
 </head>
+
 <body>
 
-<div class="container">
-    <!-- Gambar GIF Penting untuk Visual Estetik -->
-    <img class="gif" id="mainGif" src="https://giphy.com" alt="Cute Bear">
-    
-    <h1 id="judul">Hai Fira... 👑</h1>
-    <p id="pesan">Ada pesan singkat yang mau aku sampein ke kamu. Dibaca pelan-pelan yaa... ✨</p>
+<!-- Musik romantis -->
+<audio autoplay loop>
+    <source src="https://files.catbox.moe/8f2h7g.mp3" type="audio/mp3">
+</audio>
 
-    <!-- Tombol Alur Interaktif -->
-    <div class="btn-group" id="groupTombol">
-        <button class="btn-primary" id="btnUtama" onclick="jalankanAlur()">Klik di sini ya ❤️</button>
-        <button class="btn-secondary" id="btnGak" style="display: none;" ontouchstart="kabur()" onmouseover="kabur()" onclick="kabur()">Enggakk</button>
+<div class="container">
+
+    <h1 id="title">Hai Fira ❤️</h1>
+
+    <p id="message">
+        Aku cuma mau bilang...
+        kadang seseorang datang bukan buat sekadar lewat,
+        tapi buat tinggal di hati 🤍
+    </p>
+
+    <div class="btn-group" id="btnGroup">
+
+        <button class="btn-main" id="yesBtn" onclick="nextStep()">
+            Klik di sini ✨
+        </button>
+
+        <button class="btn-no" id="noBtn"
+        onmouseover="moveBtn()"
+        ontouchstart="moveBtn()">
+            Enggak 😜
+        </button>
+
     </div>
 </div>
 
-<script {timestamp="2026-05-27"}>
-    let tahapan = 1;
+<script>
 
-    // Fungsi tombol "Enggakk" otomatis kabur & anti-klik di HP/Laptop
-    function kabur() {
-        const btnGak = document.getElementById('btnGak');
-        const x = Math.random() * (window.innerWidth - btnGak.offsetWidth - 40);
-        const y = Math.random() * (window.innerHeight - btnGak.offsetHeight - 120);
-        
-        btnGak.style.position = 'fixed';
-        btnGak.style.left = Math.max(15, x) + 'px';
-        btnGak.style.top = Math.max(60, y) + 'px';
+let step = 1;
+
+function nextStep(){
+
+    const title = document.getElementById("title");
+    const message = document.getElementById("message");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    if(step === 1){
+
+        title.innerHTML = "Tentang Kamu 🌸";
+
+        message.innerHTML =
+        "Entah sejak kapan, aku jadi nyaman banget sama kamu. Chat sederhana dari kamu aja bisa bikin mood aku membaik seharian.";
+
+        yesBtn.innerHTML = "Lanjut ❤️";
+
+        step++;
+
     }
 
-    // Sistem alur cerita berjalan maju sesuai curhatanmu
-    function jalankanAlur() {
-        const judul = document.getElementById('judul');
-        const pesan = document.getElementById('pesan');
-        const gif = document.getElementById('mainGif');
-        const btnUtama = document.getElementById('btnUtama');
-        const btnGak = document.getElementById('btnGak');
+    else if(step === 2){
 
-        if (tahapan === 1) {
-            judul.innerHTML = "Jujur Saja... 🤫";
-            pesan.innerHTML = "Inget gak waktu kita fotbar kemarin? Dari semenjak itu, aku ngerasa makin dekat dan sejujurnya aku udah merasa nyaman banget sama kamu, Fir.";
-            btnUtama.innerHTML = "Lanjut.. ✨";
-            gif.src = "https://giphy.com";
-            tahapan = 2;
-        } 
-        else if (tahapan === 2) {
-            judul.innerHTML = "Gak Mau Cuma Temenan 🥺";
-            pesan.innerHTML = "Masa kita cuma temenan aja terus sih? Aku gak mau kalau kita stuck di sebatas teman biasa. Aku mau hubungan kita lebih dari ini.";
-            btnUtama.innerHTML = "Terus apa? 🙈";
-            gif.src = "https://giphy.com";
-            tahapan = 3;
-        } 
-        else if (tahapan === 3) {
-            judul.innerHTML = "Be My Princess? 👑❤️";
-            pesan.innerHTML = "Fira, kamu mau kan melangkah lebih jauh dari sekadar teman dan resmi jadi pacar aku? Tolong dijawab jujur yaa... 🥰";
-            btnUtama.innerHTML = "Mau banget! ❤️";
-            
-            // Tampilkan tombol gak yang anti-klik untuk menjebak Fira
-            btnGak.style.display = 'block';
-            tahapan = 4;
-        } 
-        else if (tahapan === 4) {
-            // HALAMAN AKHIR: SUKSES JADIAN
-            judul.innerHTML = "Yeeeeyyy! Resmi Jadian! 🎉👑❤️";
-            pesan.innerHTML = "Makasih banyak ya Fira udah mau percaya dan nerima aku! Janji deh, mulai hari ini aku bakal berusaha bikin kamu jadi orang yang paling bahagia. Bilang ke aku di chat sekarang ya kalau kamu udah sampai halaman ini! 😘✨";
-            
-            // Sembunyikan semua tombol pilihan
-            document.getElementById('groupTombol').style.display = 'none';
-            
-            // Ubah menjadi GIF pelukan yang lucu dan manis
-            gif.src = "https://giphy.com";
-            
-            // Nyalakan efek hujan balon hati bertubi-tubi
-            setInterval(createHeart, 150);
-        }
+        title.innerHTML = "Aku Suka Kamu 🤍";
+
+        message.innerHTML =
+        "Aku suka cara kamu ngobrol, cara kamu ketawa, dan cara kamu hadir tanpa sadar bikin hidup aku lebih indah.";
+
+        yesBtn.innerHTML = "Terus...? ✨";
+
+        step++;
+
     }
 
-    // Fungsi dekorasi animasi hujan hati jatuh
-    function createHeart() {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.innerHTML = '❤️';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-        heart.style.fontSize = Math.random() * 20 + 15 + 'px';
-        document.body.appendChild(heart);
-        
-        setTimeout(() => { heart.remove(); }, 5000);
+    else if(step === 3){
+
+        title.innerHTML = "Mau Gak? 💖";
+
+        message.innerHTML =
+        "Jadi... kamu mau gak jadi seseorang yang spesial buat aku? Bukan cuma hari ini, tapi semoga untuk waktu yang lama ✨";
+
+        yesBtn.innerHTML = "Mau ❤️";
+
+        noBtn.style.display = "block";
+
+        step++;
+
     }
+
+    else if(step === 4){
+
+        title.innerHTML = "YEAAYYY ❤️";
+
+        message.innerHTML =
+        "Sekarang kamu resmi jadi orang favorit aku 🥺❤️ Makasih udah nerima perasaan ini. Semoga kita bisa bikin banyak cerita manis bareng ya ✨";
+
+        document.getElementById("btnGroup").style.display = "none";
+
+        setInterval(createHeart,150);
+    }
+}
+
+function moveBtn(){
+
+    const noBtn = document.getElementById("noBtn");
+
+    const x = Math.random() * (window.innerWidth - 100);
+
+    const y = Math.random() * (window.innerHeight - 100);
+
+    noBtn.style.left = x + "px";
+
+    noBtn.style.top = y + "px";
+}
+
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+
+    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },5000);
+}
 </script>
 
 </body>
