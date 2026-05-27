@@ -3,104 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special message for my Princess... 👑❤️</title>
+    <title>Special Gift for Fira... 👑❤️</title>
+    <!-- Menggunakan font estetik Google Fonts -->
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #ffe6e6;
             text-align: center;
-            padding: 30px 15px;
+            padding: 20px 15px;
             margin: 0;
-            overflow-x: hidden;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .container {
             background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 90%;
-            margin: 40px auto;
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
+            max-width: 360px;
+            width: 90%;
+            z-index: 10;
+            transition: all 0.5s ease;
         }
-        h1 { color: #ff4d6d; font-size: 22px; margin-top: 10px; }
-        p { color: #4a4a4a; font-size: 15px; line-height: 1.6; }
-        .gif { width: 140px; margin-bottom: 10px; }
+        h1 { 
+            font-family: 'Caveat', cursive; 
+            color: #ff4d6d; 
+            font-size: 35px; 
+            margin: 10px 0; 
+        }
+        p { 
+            color: #4a4a4a; 
+            font-size: 15px; 
+            line-height: 1.6; 
+            min-height: 60px; 
+        }
+        .gif { 
+            width: 130px; 
+            height: 130px;
+            object-fit: contain;
+            margin-bottom: 10px; 
+        }
         .btn-group {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 30px;
+            margin-top: 25px;
             position: relative;
-            height: 60px;
+            height: 55px;
         }
-        button, .btn-wa {
-            padding: 12px 20px;
+        button {
+            padding: 12px 25px;
             font-size: 15px;
             border: none;
-            border-radius: 10px;
+            border-radius: 15px;
             cursor: pointer;
             font-weight: bold;
             transition: 0.1s;
             touch-action: none;
-            text-decoration: none;
-            display: inline-block;
         }
-        #btnMau { background-color: #ff4d6d; color: white; z-index: 10; }
-        #btnGak { background-color: #b0b0b0; color: white; position: absolute; }
-        .btn-wa {
-            background-color: #25d366;
-            color: white;
-            margin-top: 20px;
-            display: none; /* Sembunyi dulu sebelum diklik */
+        .btn-primary { 
+            background-color: #ff4d6d; 
+            color: white; 
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
+            z-index: 12; 
+        }
+        .btn-secondary { 
+            background-color: #b0b0b0; 
+            color: white; 
+            position: absolute; 
+            right: 25px;
+        }
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+        @keyframes fall {
+            to { transform: translateY(105vh); }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <img class="gif" src="https://giphy.com" alt="Cute Princess Bear">
+    <!-- Gambar GIF Penting untuk Visual Estetik -->
+    <img class="gif" id="mainGif" src="https://giphy.com" alt="Cute Bear">
     
-    <h1 id="judul">Hai Princess-ku... 👑</h1>
-    <p id="pesan">Selama ini aku bahagia banget bisa dekat sama kamu. Tapi jujur, aku gak mau kalau kita cuma sebatas teman terus. Aku mau jadi orang yang selalu ada buat jagain kamu. My Princess, mau gak kalau kita melangkah lebih jauh dari sekadar teman dan jadi pacar aku? 🥰</p>
+    <h1 id="judul">Hai Fira... 👑</h1>
+    <p id="pesan">Ada pesan singkat yang mau aku sampein ke kamu. Dibaca pelan-pelan yaa... ✨</p>
 
+    <!-- Tombol Alur Interaktif -->
     <div class="btn-group" id="groupTombol">
-        <button id="btnMau" onclick="terima()">Mau banget! ❤️</button>
-        <button id="btnGak" ontouchstart="kabur()" onmouseover="kabur()" onclick="kabur()">Tetep temenan aja</button>
+        <button class="btn-primary" id="btnUtama" onclick="jalankanAlur()">Klik di sini ya ❤️</button>
+        <button class="btn-secondary" id="btnGak" style="display: none;" ontouchstart="kabur()" onmouseover="kabur()" onclick="kabur()">Enggakk</button>
     </div>
-
-    <!-- Tombol WhatsApp Otomatis -->
-    <a href="#" id="tombolWA" class="btn-wa" target="_blank">Hubungi Pangeranmu Kirim WA 💬</a>
 </div>
 
-<script>
-    // PENTING: Ganti nomor di bawah ini dengan nomor WhatsApp kamu!
-    // Gunakan kode negara (62) di depan, jangan pakai angka 0. Contoh: 628123456789
-    const nomorWhatsApp = "6289531922924"; 
-    
-    // Teks pesan otomatis yang akan masuk ke WhatsApp kamu
-    const teksPesan = "Iya pangeran, aku mau kok jadi pacar kamu! Gak mau temenan doang lagi 🥰👑❤️";
+<script {timestamp="2026-05-27"}>
+    let tahapan = 1;
 
+    // Fungsi tombol "Enggakk" otomatis kabur & anti-klik di HP/Laptop
     function kabur() {
         const btnGak = document.getElementById('btnGak');
         const x = Math.random() * (window.innerWidth - btnGak.offsetWidth - 40);
-        const y = Math.random() * (window.innerHeight - btnGak.offsetHeight - 100);
+        const y = Math.random() * (window.innerHeight - btnGak.offsetHeight - 120);
         
         btnGak.style.position = 'fixed';
-        btnGak.style.left = Math.max(10, x) + 'px';
-        btnGak.style.top = Math.max(50, y) + 'px';
+        btnGak.style.left = Math.max(15, x) + 'px';
+        btnGak.style.top = Math.max(60, y) + 'px';
     }
 
-    function terima() {
-        document.getElementById('judul').innerHTML = "Yeeeeyyy! Resmi ya! 🎉👑❤️";
-        document.getElementById('pesan').innerHTML = "Makasih ya Princess udah ngasih kesempatan buat kita lebih dari sekadar teman! Sekarang, klik tombol di bawah ini buat ngabarin aku ya!";
+    // Sistem alur cerita berjalan maju sesuai curhatanmu
+    function jalankanAlur() {
+        const judul = document.getElementById('judul');
+        const pesan = document.getElementById('pesan');
+        const gif = document.getElementById('mainGif');
+        const btnUtama = document.getElementById('btnUtama');
+        const btnGak = document.getElementById('btnGak');
+
+        if (tahapan === 1) {
+            judul.innerHTML = "Jujur Saja... 🤫";
+            pesan.innerHTML = "Inget gak waktu kita fotbar kemarin? Dari semenjak itu, aku ngerasa makin dekat dan sejujurnya aku udah merasa nyaman banget sama kamu, Fir.";
+            btnUtama.innerHTML = "Lanjut.. ✨";
+            gif.src = "https://giphy.com";
+            tahapan = 2;
+        } 
+        else if (tahapan === 2) {
+            judul.innerHTML = "Gak Mau Cuma Temenan 🥺";
+            pesan.innerHTML = "Masa kita cuma temenan aja terus sih? Aku gak mau kalau kita stuck di sebatas teman biasa. Aku mau hubungan kita lebih dari ini.";
+            btnUtama.innerHTML = "Terus apa? 🙈";
+            gif.src = "https://giphy.com";
+            tahapan = 3;
+        } 
+        else if (tahapan === 3) {
+            judul.innerHTML = "Be My Princess? 👑❤️";
+            pesan.innerHTML = "Fira, kamu mau kan melangkah lebih jauh dari sekadar teman dan resmi jadi pacar aku? Tolong dijawab jujur yaa... 🥰";
+            btnUtama.innerHTML = "Mau banget! ❤️";
+            
+            // Tampilkan tombol gak yang anti-klik untuk menjebak Fira
+            btnGak.style.display = 'block';
+            tahapan = 4;
+        } 
+        else if (tahapan === 4) {
+            // HALAMAN AKHIR: SUKSES JADIAN
+            judul.innerHTML = "Yeeeeyyy! Resmi Jadian! 🎉👑❤️";
+            pesan.innerHTML = "Makasih banyak ya Fira udah mau percaya dan nerima aku! Janji deh, mulai hari ini aku bakal berusaha bikin kamu jadi orang yang paling bahagia. Bilang ke aku di chat sekarang ya kalau kamu udah sampai halaman ini! 😘✨";
+            
+            // Sembunyikan semua tombol pilihan
+            document.getElementById('groupTombol').style.display = 'none';
+            
+            // Ubah menjadi GIF pelukan yang lucu dan manis
+            gif.src = "https://giphy.com";
+            
+            // Nyalakan efek hujan balon hati bertubi-tubi
+            setInterval(createHeart, 150);
+        }
+    }
+
+    // Fungsi dekorasi animasi hujan hati jatuh
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+        document.body.appendChild(heart);
         
-        // Sembunyikan tombol pilihan lama
-        document.getElementById('groupTombol').style.display = 'none';
-        
-        // Buat link WhatsApp aktif dan tampilkan tombolnya
-        const linkWA = "https://whatsapp.com" + nomorWhatsApp + "&text=" + encodeURIComponent(teksPesan);
-        const tombolWA = document.getElementById('tombolWA');
-        tombolWA.href = linkWA;
-        tombolWA.style.display = 'block';
+        setTimeout(() => { heart.remove(); }, 5000);
     }
 </script>
 
