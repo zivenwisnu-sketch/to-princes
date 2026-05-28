@@ -1,152 +1,147 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>buat kamu</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, sans-serif;
-}
-
-body{
-    background: linear-gradient(135deg,#ff9ecf,#ffd6ec);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-}
-
-.card{
-    background:white;
-    padding:40px;
-    border-radius:25px;
-    text-align:center;
-    width:350px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    animation:fade 1s ease;
-}
-
-h1{
-    margin-bottom:15px;
-    color:#ff4f9a;
-}
-
-p{
-    margin-bottom:25px;
-    color:#555;
-}
-
-button{
-    border:none;
-    padding:12px 20px;
-    border-radius:15px;
-    cursor:pointer;
-    margin:10px;
-    font-size:16px;
-    transition:0.3s;
-}
-
-#yes{
-    background:#ff4f9a;
-    color:white;
-}
-
-#yes:hover{
-    transform:scale(1.1);
-}
-
-#no{
-    background:#eee;
-}
-
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ada yang Mau Aku Sampaikan...</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
+            transition: all 0.5s ease;
+        }
+        .heart {
+            font-size: 50px;
+            color: #ff4d6d;
+            animation: pulse 1.2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 24px;
+            margin: 15px 0;
+        }
+        p {
+            color: #4a4a4a;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 50px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-primary {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+        #btnNo {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+        }
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="card">
-    <h1 id="title">eh bentar 😭</h1>
-    <p id="text">aku cuma mau nanya sesuatu...</p>
-
-    <button id="yes">apa tuh?</button>
-    <button id="no">gak mau</button>
-</div>
-
-<script>
-const title = document.getElementById("title");
-const text = document.getElementById("text");
-const yes = document.getElementById("yes");
-const no = document.getElementById("no");
-
-let step = 0;
-
-yes.addEventListener("click", () => {
-
-    step++;
-
-    if(step == 1){
-        title.innerHTML = "sebenernya...";
-        text.innerHTML = "aku nyaman ngobrol sama kamu 😔";
-        yes.innerHTML = "terus?";
-    }
-
-    else if(step == 2){
-        title.innerHTML = "dan...";
-        text.innerHTML = "kamu lucu juga sih";
-        yes.innerHTML = "cie lanjut";
-    }
-
-    else if(step == 3){
-        title.innerHTML = "jadi gini";
-        text.innerHTML = "mau gak jadi orang spesial aku? 🥹";
-        yes.innerHTML = "MAUU";
-        no.style.display = "inline-block";
-    }
-
-    else{
-        document.body.innerHTML = `
-        <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-        flex-direction:column;
-        background:#ffd6ec;
-        font-family:Arial;
-        text-align:center;
-        ">
-            <h1 style="font-size:50px;color:#ff4f9a;">YEAYYY 💖</h1>
-            <p style="font-size:22px;">
-                sekarang kamu resmi jadi alasan aku senyum terus 😭
+    <div class="container" id="mainContainer">
+        <!-- SLIDE 1 -->
+        <div id="slide1">
+            <div class="heart">❤️</div>
+            <h1>Hai Kamu...</h1>
+            <p style="font-weight: normal; font-size: 16px;">
+                Makasih banyak ya selama ini udah nemenin hari-hari aku. Makasih juga udah selalu bikin aku ngerasa nyaman dan seneng banget setiap kali kita lagi ngobrol atau jalan bareng.
             </p>
+            <div class="btn-group">
+                <button class="btn-primary" onclick="nextSlide()">Lanjut ✨</button>
+            </div>
         </div>
-        `;
-    }
-});
+    </div>
 
-no.addEventListener("mouseover", () => {
-    if(step >= 2){
-        no.style.position = "absolute";
-        no.style.top = Math.random() * 80 + "%";
-        no.style.left = Math.random() * 80 + "%";
-    }
-});
-</script>
+    <script>
+        const mainContainer = document.getElementById('mainContainer');
 
+        // Fungsi untuk pindah ke Slide 2 (Kalimat Sesuai Request)
+        function nextSlide() {
+            mainContainer.innerHTML = `
+                <div id="slide2">
+                    <div class="heart">💝</div>
+                    <h1>I Have a Question...</h1>
+                    <p>Udah ya sampai sini aja just friend nya,<br>kamu mau gak jadi pacar ku?</p>
+                    <div class="btn-group">
+                        <button id="btnYes" class="btn-primary" onclick="accepted()">Mau!</button>
+                        <button id="btnNo" onclick="moveButton()" onmouseover="moveButton()">Nggak Mau</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fungsi membuat tombol "Nggak Mau" menghindar di Slide 2
+        function moveButton() {
+            const btnNo = document.getElementById('btnNo');
+            const maxWidth = window.innerWidth - btnNo.offsetWidth - 40;
+            const maxHeight = window.innerHeight - btnNo.offsetHeight - 40;
+
+            const randomX = Math.floor(Math.random() * maxWidth);
+            const randomY = Math.floor(Math.random() * maxHeight);
+
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+
+        // Halaman Sukses
+        function accepted() {
+            mainContainer.innerHTML = `
+                <div class="success-icon">❤️👩‍❤️‍👨❤️</div>
+                <h1>Yesss, Kita Jadian!</h1>
+                <p style="font-weight: normal; font-size: 16px;">
+                    Makasih banyak ya udah mau nerima aku jadi pacar kamu! Janji bakal selalu ada buat kamu mulai hari ini dan seterusnya. ❤️<br><br>
+                    <i>Jangan lupa screenshot halaman ini terus kirim ke WhatsApp aku sekarang ya! 🥰</i>
+                </p>
+            `;
+        }
+    </script>
 </body>
 </html>
