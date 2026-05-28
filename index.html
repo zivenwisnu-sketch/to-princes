@@ -1,162 +1,152 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untuk Fira ✨</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 75, 110, 0.2);
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            transition: all 0.5s ease;
-        }
-        .gif-container img {
-            width: 150px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        h1 {
-            color: #ff4b6e;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        p {
-            color: #4a4a4a;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            position: relative;
-            height: 50px;
-        }
-        button {
-            padding: 12px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        #btn-yes {
-            background-color: #ff4b6e;
-            color: white;
-            box-shadow: 0 5px 15px rgba(255, 75, 110, 0.4);
-        }
-        #btn-no {
-            background-color: #9b9b9b;
-            color: white;
-            position: absolute;
-        }
-        .success-screen {
-            display: none;
-        }
-        .hearts {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-        @keyframes heartFade {
-            0% { transform: translateY(100vh) scale(0); opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>buat kamu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#ff9ecf,#ffd6ec);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    width:350px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    animation:fade 1s ease;
+}
+
+h1{
+    margin-bottom:15px;
+    color:#ff4f9a;
+}
+
+p{
+    margin-bottom:25px;
+    color:#555;
+}
+
+button{
+    border:none;
+    padding:12px 20px;
+    border-radius:15px;
+    cursor:pointer;
+    margin:10px;
+    font-size:16px;
+    transition:0.3s;
+}
+
+#yes{
+    background:#ff4f9a;
+    color:white;
+}
+
+#yes:hover{
+    transform:scale(1.1);
+}
+
+#no{
+    background:#eee;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
 </head>
 <body>
 
-    <div class="container" id="main-card">
-        <!-- Tampilan Utama -->
-        <div class="question-screen" id="question-area">
-            <div class="gif-container">
-                <!-- GIF Lucu/Romantis -->
-                <img src="https://tenor.com" alt="Cute GIF">
-            </div>
-            <h1>Hii Firaaa... ✨</h1>
-            <p>Kamu mau gak punya status yang berbeda? Masa kita stuck di <i>just friend</i> aja, sedangkan kita udah sedekat ini. Aku juga udah nyaman banget sama kamu. <br><br><b>Will you be mine? 💖</b></p>
-            
-            <div class="btn-group">
-                <button id="btn-yes" onclick="terimaCinta()">Mau Banget!</button>
-                <button id="btn-no" onmouseover="hindari()" onclick="hindari()">Gak Mau</button>
-            </div>
+<div class="card">
+    <h1 id="title">eh bentar 😭</h1>
+    <p id="text">aku cuma mau nanya sesuatu...</p>
+
+    <button id="yes">apa tuh?</button>
+    <button id="no">gak mau</button>
+</div>
+
+<script>
+const title = document.getElementById("title");
+const text = document.getElementById("text");
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+
+let step = 0;
+
+yes.addEventListener("click", () => {
+
+    step++;
+
+    if(step == 1){
+        title.innerHTML = "sebenernya...";
+        text.innerHTML = "aku nyaman ngobrol sama kamu 😔";
+        yes.innerHTML = "terus?";
+    }
+
+    else if(step == 2){
+        title.innerHTML = "dan...";
+        text.innerHTML = "kamu lucu juga sih";
+        yes.innerHTML = "cie lanjut";
+    }
+
+    else if(step == 3){
+        title.innerHTML = "jadi gini";
+        text.innerHTML = "mau gak jadi orang spesial aku? 🥹";
+        yes.innerHTML = "MAUU";
+        no.style.display = "inline-block";
+    }
+
+    else{
+        document.body.innerHTML = `
+        <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        flex-direction:column;
+        background:#ffd6ec;
+        font-family:Arial;
+        text-align:center;
+        ">
+            <h1 style="font-size:50px;color:#ff4f9a;">YEAYYY 💖</h1>
+            <p style="font-size:22px;">
+                sekarang kamu resmi jadi alasan aku senyum terus 😭
+            </p>
         </div>
+        `;
+    }
+});
 
-        <!-- Tampilan Setelah Diterima -->
-        <div class="success-screen" id="success-area">
-            <div class="gif-container">
-                <img src="https://tenor.com" alt="Happy GIF">
-            </div>
-            <h1>Yayyy! I Love You, Fira! 💖</h1>
-            <p>Makasih ya udah mau melangkah lebih jauh bareng aku. Kebahagiaan kamu sekarang jadi salah satu prioritas aku! 🥰</p>
-        </div>
-    </div>
+no.addEventListener("mouseover", () => {
+    if(step >= 2){
+        no.style.position = "absolute";
+        no.style.top = Math.random() * 80 + "%";
+        no.style.left = Math.random() * 80 + "%";
+    }
+});
+</script>
 
-    <div class="hearts" id="heart-box"></div>
-
-    <script>
-        const btnNo = document.getElementById('btn-no');
-        const questionArea = document.getElementById('question-area');
-        const successArea = document.getElementById('success-area');
-        const heartBox = document.getElementById('heart-box');
-
-        // Fungsi membuat tombol "Gak Mau" kabur/menghindar
-        function hindari() {
-            // Mengacak posisi di dalam batas container agar tidak keluar layar jauh
-            const x = Math.random() * (window.innerWidth - 150);
-            const y = Math.random() * (window.innerHeight - 50);
-            
-            btnNo.style.position = 'fixed';
-            btnNo.style.left = x + 'px';
-            btnNo.style.top = y + 'px';
-        }
-
-        // Fungsi saat tombol "Mau Banget" ditekan
-        function terimaCinta() {
-            questionArea.style.display = 'none';
-            successArea.style.display = 'block';
-            buatHujanHati();
-        }
-
-        // Efek animasi hujan hati setelah diterima
-        function buatHujanHati() {
-            for (let i = 0; i < 50; i++) {
-                const heart = document.createElement('div');
-                heart.innerText = '💖';
-                heart.style.position = 'absolute';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-                heart.style.animation = `heartFade ${Math.random() * 2 + 2}s linear forwards`;
-                heartBox.appendChild(heart);
-                
-                setTimeout(() => { heart.remove(); }, 4000);
-            }
-        }
-    </script>
 </body>
 </html>
